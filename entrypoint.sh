@@ -4,18 +4,15 @@ set -euo pipefail
 
 AVALANCHEGO_DATA_DIR=${AVALANCHEGO_DATA_DIR:-$HOME/.avalanchego}
 
-# Set default plugin dir if not set
-if [ -z "${AVALANCHEGO_PLUGIN_DIR:-}" ]; then
-    export AVALANCHEGO_PLUGIN_DIR="/plugins/"
-fi
+# Create plugins directory and copy plugins
+mkdir -p "$AVALANCHEGO_DATA_DIR/plugins"
+cp -r /plugins/* "$AVALANCHEGO_DATA_DIR/plugins/"
 
 # Write BLS key if provided
 if [ -n "${BLS_KEY_BASE64:-}" ]; then
     mkdir -p "$AVALANCHEGO_DATA_DIR/staking"
     echo "$BLS_KEY_BASE64" | base64 -d > "$AVALANCHEGO_DATA_DIR/staking/signer.key"
 fi
-
-
 
 # Function to convert ENV vars to flags
 get_avalanchego_flags() {

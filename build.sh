@@ -14,7 +14,7 @@ ARCHITECTURES=("amd64" "arm64")
 
 # Add specific versions
 AVALANCHEGO_VERSIONS+=("1.12.0" "1.12.1")
-SUBNETEVM_VERSIONS+=("0.6.12" "0.7.0")
+SUBNETEVM_VERSIONS+=("0.7.0")
 
 # Pull AvalancheGo images first
 for avalanche_version in "${AVALANCHEGO_VERSIONS[@]}"; do
@@ -28,7 +28,7 @@ for avalanche_version in "${AVALANCHEGO_VERSIONS[@]}"; do
     echo "Building for AvalancheGo ${avalanche_version} and Subnet-EVM ${subnet_version}"
     
     # Create manifest list name
-    MANIFEST="containerman17/avalanchego-subnetevm:v${avalanche_version}_v${subnet_version}"
+    MANIFEST="containerman17/easy-avalanchego:v${avalanche_version}_v${subnet_version}"
     
     # Build and push all architectures in one command
     docker buildx build \
