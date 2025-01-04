@@ -1,7 +1,7 @@
 # Easy AvalancheGo
-A wrapper around the original AvalancheGo container image with improved configuration handling.
+A wrapper around the original AvalancheGo container image with simplified configuration handling.
 
-Use at your own risk. Hopefully envconfig will be supported by avalanchego, making this image obsolete.
+⚠️ **This is not an official AvalancheGo distribution, but rather a personal contribution and experiment.** The plan is to eventually add support for Easy AvalancheGo's functionality to avalanchego itself. 
 
 ## Example command
 
@@ -44,4 +44,3 @@ This will copy the debug configuration to `$HOME/.avalanchego/configs/chains/<CH
 
 ## signer.key
 If you provide a BLS key in the `BLS_KEY_BASE64` environment variable, it will be written to the `signer.key` file in the `staking` directory.
-
