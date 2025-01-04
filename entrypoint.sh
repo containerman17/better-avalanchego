@@ -14,6 +14,20 @@ if [ -n "${BLS_KEY_BASE64:-}" ]; then
     echo "$BLS_KEY_BASE64" | base64 -d > "$AVALANCHEGO_DATA_DIR/staking/signer.key"
 fi
 
+# Handle EVM debug configurations
+while IFS= read -r line; do
+    name="${line%%=*}"
+    value="${line#*=}"
+    if [[ $name == EASY_AVALANCHEGO_EVM_DEBUG_* ]]; then
+        chain_id="${name#EASY_AVALANCHEGO_EVM_DEBUG_}"
+        if [[ $value == "true" ]]; then
+            echo "Enabling EVM debug config for chain $chain_id"
+            mkdir -p "$AVALANCHEGO_DATA_DIR/configs/chains/$chain_id"
+            cp /evm_debug_config.json "$AVALANCHEGO_DATA_DIR/configs/chains/$chain_id/config.json"
+        fi
+    fi
+done < <(env)
+
 # Function to convert ENV vars to flags
 get_avalanchego_flags() {
     local flags=""

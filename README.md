@@ -34,6 +34,14 @@ Flag names should be uppercase with underscores replacing dashes.
 
 The Subnet-EVM plugin is automatically copied from the image to `$HOME/.avalanchego/plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy` on startup.
 
+## EVM Debug Configuration
+You can enable debug configuration for specific chains by setting the environment variable:
+```bash
+EASY_AVALANCHEGO_EVM_DEBUG_<CHAIN_ID>=true
+```
+
+This will copy the debug configuration to `$HOME/.avalanchego/configs/chains/<CHAIN_ID>/config.json`
+
 ## signer.key
 If you provide a BLS key in the `BLS_KEY_BASE64` environment variable, it will be written to the `signer.key` file in the `staking` directory.
 

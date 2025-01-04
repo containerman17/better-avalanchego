@@ -32,6 +32,7 @@ FROM debian:bookworm-slim
 COPY --from=avalanchego /avalanchego/build/avalanchego /usr/local/bin/avalanchego
 COPY --from=subevm_builder /subnet-evm/subnet-evm /plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy
 
+COPY evm_debug_config.json /evm_debug_config.json
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
